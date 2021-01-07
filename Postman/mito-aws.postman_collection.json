@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "86ac6ab8-21fd-4515-9330-77ff701724f8",
+		"name": "mito-aws",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usuarios-regCliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"usu01\",\n    \"password\": \"123456\",\n    \"imei\": \"imei\",\n    \"macAddress\": \"macAddress\",\n    \"codTipoPlat\": \"MOB\",\n    \"codEstReg\": \"PEN\",\n    \"nombres\": \"juan\",\n    \"primApe\": \"perez\",\n    \"segApe\": \"perez\",\n    \"codGenero\": \"M\",\n    \"codEstCiv\": \"C\",\n    \"codTipDoc\": \"CI\",\n    \"numDoc\": \"12345678\",\n    \"comDoc\": \"\",\n    \"extDoc\": \"LP\",\n    \"email\": \"daniel.10510@gmail.com\",\n    \"celular\": \"78546898\",\n    \"direccion\": \"direccion\",\n    \"coordX\": \"coordX\",\n    \"coordY\": \"coordY\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "10.1.17.199:8090/api/usuarios/usuarios/regCliente",
+					"host": [
+						"10",
+						"1",
+						"17",
+						"199"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"usuarios",
+						"usuarios",
+						"regCliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios-health-status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/api/usuarios/usuarios/health-status",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"usuarios",
+						"usuarios",
+						"health-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios-valDispUsuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\": \"usu50\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/api/usuarios/usuarios/valDispUsuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"api",
+						"usuarios",
+						"usuarios",
+						"valDispUsuario"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

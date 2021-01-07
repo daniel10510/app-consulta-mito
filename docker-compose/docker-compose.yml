@@ -1,0 +1,59 @@
+version: '3.7'
+services:
+  mysql-server:
+    image: mysql:latest
+    container_name: mysql-server
+    #volumes:
+    #  - ../mysql-server/mysql-dump:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=fiderin
+      - MYSQL_USER=dbadmin
+      - MYSQL_PASSWORD=dbadminpassword
+    ports:
+      - 3306:3306
+    restart: always
+    #volumes:
+    #  - ../mysql-server:/var/lib/mysql
+    networks:
+      - bdp-microserver-platform
+  eureka-server:
+    #build: ../springboot-servicio-eureka-server/
+    #image: servicio-eureka-server
+    image: daniel10510/servicio-eureka-server:1
+    container_name: servicio-eureka-server
+    depends_on:
+      - mysql-server
+    ports:
+      - "8761:8761"
+    restart: always
+    networks:
+      - bdp-microserver-platform
+  servicio-usuarios:
+    #build: ../springboot-servicio-usuarios/
+    #image: servicio-usuarios
+    image: daniel10510/servicio-usuarios:1
+    container_name: servicio-usuarios
+    restart: always
+    depends_on:
+      - mysql-server
+      - eureka-server
+    networks:
+      - bdp-microserver-platform
+  servicio-zuul-server:
+    #build: ../springboot-servicio-zuul-server/
+    #image: servicio-zuul-server
+    image: daniel10510/servicio-zuul-server:1
+    container_name: servicio-zuul-server
+    restart: always
+    depends_on:
+      - mysql-server
+      - servicio-usuarios
+      - eureka-server
+    ports:
+      - "8090:8090"
+    networks:
+      - bdp-microserver-platform
+networks:
+  bdp-microserver-platform:
+    name: bdp-microserver-platform
